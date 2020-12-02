@@ -32,4 +32,14 @@ public interface ApiData {
     @POST("getAllAktifitas.php")
     Call<Value> getAllAktifitas(@Field("getAllAktifitas") String getAllAktifitas);
 
+
+    @FormUrlEncoded
+    @POST("InputSPK.php")
+    Call<Value> Simpan(@Field("Aktifitas") String Aktifitas,
+                       @Field("NamaTk") String NamaTk,
+                       @Field("KIT") String KIT,
+                       @Field("HKO") String HKO,
+                       @Field("Hasil") String Hasil,
+                       @Field("Great") String Great,
+                       @Field("TanggalRealisasi") String TanggalRealisasi);
 }

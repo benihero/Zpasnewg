@@ -334,9 +334,6 @@ public class InputSPK extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
 public void getKIT(String nama){
@@ -468,6 +465,12 @@ public void getKIT(String nama){
                 statusPopupList3.show();
             }
         });
+    }
+
+    public void InputDataSPK(){
+
+
+
     }
     }
 
