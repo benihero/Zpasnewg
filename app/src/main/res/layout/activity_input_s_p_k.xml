@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
+    tools:context=".InputSPK">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="130dp"
+            android:layout_height="90dp"
+            android:src="@drawable/ggflogo"
+             />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+<EditText
+    android:id="@+id/SpkName"
+    android:layout_width="160dp"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:focusable="false"
+    android:drawableEnd="@drawable/dropdownicon"
+    android:textAlignment="center"
+    android:textColor="@color/white"
+    android:background="@drawable/bg_buttonblue"
+    android:hint="Select SPK"
+    android:textSize="16dp"
+    android:textStyle="bold"
+    android:layout_height="35dp"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:layout_height="wrap_content">
+
+
+
+        <LinearLayout
+            android:background="@drawable/bg_round"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Tanggal SPK :"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/InputTanggal"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="7dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/blueBG"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Tanggal Realisasi"
+                        android:layout_weight="2"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:layout_width="0dp"
+                        android:id="@+id/InputTanggalReal"
+                        android:layout_weight="2.5"
+                        android:elevation="3dp"
+                        android:focusable="false"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:padding="5dp"
+                        android:background="@color/white"
+                        android:layout_height="match_parent"/>
+                    <ImageView
+                        android:id="@+id/buttonpick"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:background="@color/blue"
+                        android:src="@drawable/calendar"
+                        android:layout_marginLeft="5dp"
+                        android:layout_height="match_parent"/>
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="PJ"
+                        android:layout_weight="1.6"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_weight="2.5"
+                        android:id="@+id/InputPJ"
+                        android:textSize="15dp"
+                        android:focusable="false"
+                        android:textColor="@color/black"
+                        android:padding="5dp"
+                        android:elevation="3dp"
+                        android:background="@drawable/custom_input"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Kawil/Kasie"
+                        android:layout_weight="1.6"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:id="@+id/InputKawil"
+                        android:layout_width="0dp"
+                        android:layout_weight="2.5"
+                        android:elevation="3dp"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:focusable="false"
+                        android:padding="5dp"
+                        android:background="@drawable/custom_input"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Mandor"
+                        android:layout_weight="1.6"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:id="@+id/InputMandor"
+                        android:layout_width="0dp"
+                        android:layout_weight="2.5"
+                        android:elevation="3dp"
+                        android:focusable="false"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:padding="5dp"
+                        android:background="@drawable/custom_input"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/bg_round"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:padding="5dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Aktivitas"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:padding="9dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/blueBG"
+                    android:layout_height="wrap_content">
+
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:layout_width="match_parent"
+                       android:id="@+id/reyaktifitas"
+                       android:layout_height="wrap_content">
+
+                   </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+              <LinearLayout
+            android:background="@drawable/bg_round"
+            android:layout_width="match_parent"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Tenaga Kerja"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/blueBG"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Aktivitas"
+                        android:layout_weight="1.6"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:id="@+id/InputAktifitas"
+                        android:layout_width="0dp"
+                        android:padding="5dp"
+                        android:focusable="false"
+                        android:hint="Pilih Aktivitas"
+                        android:textSize="15dp"
+                        android:layout_weight="2.5"
+                        android:elevation="3dp"
+                        android:drawableEnd="@drawable/dropdownicon"
+                        android:background="@drawable/bg_buttonblue"
+
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Nama"
+                        android:layout_weight="1.6"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:id="@+id/InputNama"
+                        android:layout_width="0dp"
+                        android:layout_weight="2.5"
+                        android:focusable="false"
+                        android:drawableEnd="@drawable/dropdownicon"
+                        android:background="@drawable/bg_buttonblue"
+                        android:textColor="@color/white"
+                        android:elevation="3dp"
+                        android:padding="5dp"
+                        android:textSize="15dp"
+                        android:hint="Pilih Nama TK"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="KIT"
+                        android:layout_weight="1.6"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:id="@+id/InputKIT"
+                        android:layout_width="0dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="2.5"
+                        android:padding="5dp"
+                        android:textSize="15dp"
+                        android:elevation="3dp"
+                        android:background="@color/white"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="HKO"
+                        android:layout_weight="1.6"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_weight="2.5"
+                        android:elevation="3dp"
+                        android:textSize="15dp"
+                        android:padding="5dp"
+                        android:background="@color/white"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Hasil"
+                        android:layout_weight="1.6"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_weight="2.5"
+                        android:elevation="3dp"
+                        android:textSize="15dp"
+                        android:padding="5dp"
+                        android:background="@color/white"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Great"
+                        android:layout_weight="1.6"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:id="@+id/InputGrade"
+                        android:layout_width="0dp"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:focusable="false"
+                        android:textAlignment="center"
+                        android:layout_weight="2.5"
+                        android:textColor="@color/white"
+                        android:drawableEnd="@drawable/dropdownicon"
+                        android:background="@drawable/bg_buttonblue"
+                        android:text="A"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:layout_height="35dp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_btnsave"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
