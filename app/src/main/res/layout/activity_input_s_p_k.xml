@@ -128,7 +128,6 @@
                         android:id="@+id/buttonpick"
                         android:layout_width="0dp"
                         android:layout_weight="0.5"
-                        android:background="@color/blue"
                         android:src="@drawable/calendar"
                         android:layout_marginLeft="5dp"
                         android:layout_height="match_parent"/>
@@ -315,6 +314,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Tenaga Kerja"
+                    android:padding="5dp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:layout_height="wrap_content"/>
@@ -458,9 +458,12 @@
                         android:textColor="@color/black"
                         android:layout_height="match_parent"/>
                     <EditText
+                        android:id="@+id/InputHKO"
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
                         android:elevation="3dp"
+                        android:inputType="number"
+                        android:textColor="@color/black"
                         android:textSize="15dp"
                         android:padding="5dp"
                         android:background="@color/white"
@@ -490,9 +493,12 @@
                         android:textColor="@color/black"
                         android:layout_height="match_parent"/>
                     <EditText
+                        android:id="@+id/InputHasil"
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
                         android:elevation="3dp"
+                        android:inputType="number"
+                        android:textColor="@color/black"
                         android:textSize="15dp"
                         android:padding="5dp"
                         android:background="@color/white"
@@ -548,6 +554,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:text="Save"
+                android:onClick="InputDataSPK"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"

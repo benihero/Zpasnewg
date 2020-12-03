@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -32,7 +33,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InputSPK extends AppCompatActivity {
 
-    EditText spk,mandor,kawil,pj,tanggalreal,Aktifitas,nama,KIT,Grade;
+    EditText spk,mandor,kawil,pj,tanggalreal,Aktifitas,nama,KIT,Grade,hasil,hko;
     TextView Tanggalspk;
     private ListPopupWindow statusPopupList;
     private ListPopupWindow statusPopupList1;
@@ -41,6 +42,7 @@ public class InputSPK extends AppCompatActivity {
     private AdapterActivity viewAdapter;
     RecyclerView recyclerView;
     ImageView buttonpick;
+    ProgressDialog progressDialog;
     DatePickerDialog picker;
     String URL = "http://192.168.43.38/spk/";
     private List<ResultSPK> results = new ArrayList<>();
@@ -63,6 +65,8 @@ public class InputSPK extends AppCompatActivity {
         nama = findViewById(R.id.InputNama);
         Grade = findViewById(R.id.InputGrade);
         KIT = findViewById(R.id.InputKIT);
+        hasil = findViewById(R.id.InputHasil);
+        hko = findViewById(R.id.InputHKO);
         recyclerView = findViewById(R.id.reyaktifitas);
 
         viewAdapter = new AdapterActivity(this,resultsAllaktifitas);
@@ -467,8 +471,55 @@ public void getKIT(String nama){
         });
     }
 
-    public void InputDataSPK(){
+    public void InputDataSPK(View view){
 
+String aktifitasI = Aktifitas.getText().toString();
+String NamaTK =  nama.getText().toString();
+String kit = KIT.getText().toString();
+String Spk = spk.getText().toString();
+String HKO = hko.getText().toString();
+String Hasil = hasil.getText().toString();
+String Tanggal = tanggalreal.getText().toString();
+String Great = Grade.getText().toString();
+
+        //membuat progres dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading..");
+        progressDialog.show();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiData api = retrofit.create(ApiData.class);
+        Call<Value> call = api.Simpan(Spk,aktifitasI,NamaTK,kit,HKO,Hasil,Great,Tanggal);
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                String value = response.body().getValue();
+                String message = response.body().getMessage();
+                progressDialog.dismiss();
+                if(value.equals("1")){
+                    Toast.makeText(getApplicationContext(),"Data Berhasil Dimasukan",Toast.LENGTH_SHORT).show();
+
+
+                } else {
+                    Toast.makeText(getApplicationContext(),"Data Gagal Dimasukan",Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(),"Jaringan error",Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        });
 
 
     }
