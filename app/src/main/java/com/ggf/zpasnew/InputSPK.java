@@ -33,8 +33,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InputSPK extends AppCompatActivity {
 
-    EditText spk,mandor,kawil,pj,tanggalreal,Aktifitas,nama,KIT,Grade,hasil,hko;
-    TextView Tanggalspk;
+    EditText spk, mandor, kawil, pj, tanggalreal, Aktifitas, nama, KIT, Grade, hasil, hko;
+    TextView Tanggalspk,shift;
     private ListPopupWindow statusPopupList;
     private ListPopupWindow statusPopupList1;
     private ListPopupWindow statusPopupList2;
@@ -50,6 +50,7 @@ public class InputSPK extends AppCompatActivity {
     private List<ResultTK> resultskit = new ArrayList<>();
     private List<ResultAktifitas> resultsaktifitas = new ArrayList<>();
     private List<ResultAktifitas> resultsAllaktifitas = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,21 +62,20 @@ public class InputSPK extends AppCompatActivity {
         pj = findViewById(R.id.InputPJ);
         Aktifitas = findViewById(R.id.InputAktifitas);
         mandor = findViewById(R.id.InputMandor);
-        Tanggalspk= findViewById(R.id.InputTanggal);
+        Tanggalspk = findViewById(R.id.InputTanggal);
         nama = findViewById(R.id.InputNama);
         Grade = findViewById(R.id.InputGrade);
+        shift = findViewById(R.id.Shift);
         KIT = findViewById(R.id.InputKIT);
         hasil = findViewById(R.id.InputHasil);
         hko = findViewById(R.id.InputHKO);
         recyclerView = findViewById(R.id.reyaktifitas);
 
-        viewAdapter = new AdapterActivity(this,resultsAllaktifitas);
+        viewAdapter = new AdapterActivity(this, resultsAllaktifitas);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator( new DefaultItemAnimator());
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(viewAdapter);
-
-
 
 
         buttonpick.setOnClickListener(new View.OnClickListener() {
@@ -92,11 +92,11 @@ public class InputSPK extends AppCompatActivity {
                 picker = new DatePickerDialog(InputSPK.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        tanggalreal.setText(year+"-"+(month+1)+"-"+ dayOfMonth);
+                        tanggalreal.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
 
 
                     }
-                },year,moth,day);
+                }, year, moth, day);
                 picker.show();
 
             }
@@ -113,7 +113,7 @@ public class InputSPK extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-              getDataSPK(spk.getText().toString());
+                getDataSPK(spk.getText().toString());
                 getDataAktifitas(spk.getText().toString());
                 loadRecycleData(spk.getText().toString());
             }
@@ -124,46 +124,46 @@ public class InputSPK extends AppCompatActivity {
             }
         });
 
-       mandor.addTextChangedListener(new TextWatcher() {
-           @Override
-           public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        mandor.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-           }
+            }
 
-           @Override
-           public void onTextChanged(CharSequence s, int start, int before, int count) {
-               getTK(mandor.getText().toString());
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                getTK(mandor.getText().toString());
 
-           }
+            }
 
-           @Override
-           public void afterTextChanged(Editable s) {
+            @Override
+            public void afterTextChanged(Editable s) {
 
-           }
-       });
+            }
+        });
 
-       nama.addTextChangedListener(new TextWatcher() {
-           @Override
-           public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        nama.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-           }
+            }
 
-           @Override
-           public void onTextChanged(CharSequence s, int start, int before, int count) {
-               getKIT(nama.getText().toString());
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                getKIT(nama.getText().toString());
 
-           }
+            }
 
-           @Override
-           public void afterTextChanged(Editable s) {
+            @Override
+            public void afterTextChanged(Editable s) {
 
-           }
-       });
+            }
+        });
     }
 
-    public void getListDataGrade(){
+    public void getListDataGrade() {
 
-        ArrayList<String>grade = new ArrayList<>();
+        ArrayList<String> grade = new ArrayList<>();
         grade.add("A");
         grade.add("B");
         grade.add("C");
@@ -184,7 +184,7 @@ public class InputSPK extends AppCompatActivity {
 
     }
 
-    public void loadRecycleData(String data){
+    public void loadRecycleData(String data) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
@@ -197,9 +197,9 @@ public class InputSPK extends AppCompatActivity {
             public void onResponse(Call<Value> call, Response<Value> response) {
 
                 String value = response.body().getValue();
-                if(value.equals("1")){
+                if (value.equals("1")) {
                     resultsAllaktifitas = response.body().getResultAllAktifitas();
-                    viewAdapter = new AdapterActivity(InputSPK.this,resultsAllaktifitas);
+                    viewAdapter = new AdapterActivity(InputSPK.this, resultsAllaktifitas);
                     recyclerView.setAdapter(viewAdapter);
 
                 }
@@ -214,7 +214,7 @@ public class InputSPK extends AppCompatActivity {
 
     }
 
-    public void getDataSPK(String spk){
+    public void getDataSPK(String spk) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -232,6 +232,7 @@ public class InputSPK extends AppCompatActivity {
                     mandor.setText(results.get(0).getMandora());
                     kawil.setText(results.get(0).getKawil());
                     pj.setText(results.get(0).getPJ());
+                    shift.setText(results.get(0).getShift());
                     Tanggalspk.setText(results.get(0).getTanggalSPK());
                 }
             }
@@ -245,7 +246,7 @@ public class InputSPK extends AppCompatActivity {
 
     }
 
-    public void getDataAktifitas(String aktifitas){
+    public void getDataAktifitas(String aktifitas) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -257,13 +258,13 @@ public class InputSPK extends AppCompatActivity {
             public void onResponse(Call<Value> call, Response<Value> response) {
 
                 String value = response.body().getValue();
-                if(value.equals("1")){
+                if (value.equals("1")) {
 
                     resultsaktifitas = response.body().getResultAktifitas();
 
                     final List<String> status = new ArrayList<>();
 
-                    for(int i =0; i< resultsaktifitas.size(); i++){
+                    for (int i = 0; i < resultsaktifitas.size(); i++) {
 
                         status.add(resultsaktifitas.get(i).getAktifitasName());
                     }
@@ -290,10 +291,9 @@ public class InputSPK extends AppCompatActivity {
         });
 
 
-
     }
 
-    public void getTK(String tk){
+    public void getTK(String tk) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
@@ -313,7 +313,7 @@ public class InputSPK extends AppCompatActivity {
 
                     final List<String> status = new ArrayList<>();
 
-                    for(int i =0; i< resultstk.size(); i++){
+                    for (int i = 0; i < resultstk.size(); i++) {
 
                         status.add(resultstk.get(i).getNama());
                     }
@@ -340,40 +340,38 @@ public class InputSPK extends AppCompatActivity {
 
     }
 
-public void getKIT(String nama){
+    public void getKIT(String nama) {
 
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-    ApiData api = retrofit.create(ApiData.class);
-    Call<Value> call = api.getKIT(nama);
-    call.enqueue(new Callback<Value>() {
-        @Override
-        public void onResponse(Call<Value> call, Response<Value> response) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiData api = retrofit.create(ApiData.class);
+        Call<Value> call = api.getKIT(nama);
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
 
-            String value = response.body().getValue();
+                String value = response.body().getValue();
 
 
-            if (value.equals("1")) {
-                resultskit = response.body().getResultKIT();
+                if (value.equals("1")) {
+                    resultskit = response.body().getResultKIT();
 
-                KIT.setText(resultskit.get(0).getKIT());
+                    KIT.setText(resultskit.get(0).getKIT());
+                }
             }
-        }
 
-        @Override
-        public void onFailure(Call<Value> call, Throwable t) {
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
 
-        }
-    });
-
+            }
+        });
 
 
+    }
 
-}
-
-    public void LoadSPK(){
+    public void LoadSPK() {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
@@ -387,13 +385,13 @@ public void getKIT(String nama){
 
                 int position = 0;
                 String value = response.body().getValue();
-                if(value.equals("1")){
+                if (value.equals("1")) {
 
                     results = response.body().getResult();
 
                     final List<String> status = new ArrayList<>();
 
-                    for(int i =0; i< results.size(); i++){
+                    for (int i = 0; i < results.size(); i++) {
 
                         status.add(results.get(i).getSPKName());
                     }
@@ -426,9 +424,9 @@ public void getKIT(String nama){
         spk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(statusPopupList == null){
-                    Toast.makeText(getApplicationContext(),"Periksa Koneksi Internet",Toast.LENGTH_SHORT).show();
-                }else {
+                if (statusPopupList == null) {
+                    Toast.makeText(getApplicationContext(), "Periksa Koneksi Internet", Toast.LENGTH_SHORT).show();
+                } else {
 
                     statusPopupList.show();
                 }
@@ -439,10 +437,10 @@ public void getKIT(String nama){
         Aktifitas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(statusPopupList2 == null){
+                if (statusPopupList2 == null) {
 
-                    Toast.makeText(getApplicationContext(),"Data Belum masuk",Toast.LENGTH_SHORT).show();
-                }else {
+                    Toast.makeText(getApplicationContext(), "Data Belum masuk", Toast.LENGTH_SHORT).show();
+                } else {
                     statusPopupList2.show();
                 }
 
@@ -453,10 +451,10 @@ public void getKIT(String nama){
         nama.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(statusPopupList1 == null){
+                if (statusPopupList1 == null) {
 
-                    Toast.makeText(getApplicationContext(),"Data Belum masuk",Toast.LENGTH_SHORT).show();
-                }else {
+                    Toast.makeText(getApplicationContext(), "Data Belum masuk", Toast.LENGTH_SHORT).show();
+                } else {
                     statusPopupList1.show();
                 }
 
@@ -471,16 +469,16 @@ public void getKIT(String nama){
         });
     }
 
-    public void InputDataSPK(View view){
+    public void InputDataSPK(View view) {
 
-String aktifitasI = Aktifitas.getText().toString();
-String NamaTK =  nama.getText().toString();
-String kit = KIT.getText().toString();
-String Spk = spk.getText().toString();
-String HKO = hko.getText().toString();
-String Hasil = hasil.getText().toString();
-String Tanggal = tanggalreal.getText().toString();
-String Great = Grade.getText().toString();
+        String aktifitasI = Aktifitas.getText().toString();
+        String NamaTK = nama.getText().toString();
+        String kit = KIT.getText().toString();
+        String Spk = spk.getText().toString();
+        String HKO = hko.getText().toString();
+        String Hasil = hasil.getText().toString();
+        String Tanggal = tanggalreal.getText().toString();
+        String Great = Grade.getText().toString();
 
         //membuat progres dialog
         progressDialog = new ProgressDialog(this);
@@ -493,19 +491,21 @@ String Great = Grade.getText().toString();
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiData api = retrofit.create(ApiData.class);
-        Call<Value> call = api.Simpan(Spk,aktifitasI,NamaTK,kit,HKO,Hasil,Great,Tanggal);
+        Call<Value> call = api.Simpan(Spk, aktifitasI, NamaTK, kit, HKO, Hasil, Great, Tanggal);
         call.enqueue(new Callback<Value>() {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
                 String value = response.body().getValue();
-                String message = response.body().getMessage();
+
                 progressDialog.dismiss();
-                if(value.equals("1")){
-                    Toast.makeText(getApplicationContext(),"Data Berhasil Dimasukan",Toast.LENGTH_SHORT).show();
+                if (value.equals("1")) {
+                    Toast.makeText(getApplicationContext(), "Data Berhasil Dimasukan", Toast.LENGTH_SHORT).show();
+                    hko.setText("");
+                    hasil.setText("");
 
 
                 } else {
-                    Toast.makeText(getApplicationContext(),"Data Gagal Dimasukan",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Data Gagal Dimasukan", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -514,7 +514,7 @@ String Great = Grade.getText().toString();
             @Override
             public void onFailure(Call<Value> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(),"Jaringan error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Jaringan error", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -523,7 +523,7 @@ String Great = Grade.getText().toString();
 
 
     }
-    }
+}
 
 
 

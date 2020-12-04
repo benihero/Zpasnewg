@@ -12,6 +12,9 @@ public interface ApiData {
     @GET("getSpk.php")
     Call<Value> SpkName();
 
+    @GET("getSPKInput.php")
+    Call<Value> getSpkInput();
+
     @FormUrlEncoded
     @POST("selectSPK.php")
     Call<Value> getspk(@Field("getspk") String getspk);
@@ -19,6 +22,10 @@ public interface ApiData {
     @FormUrlEncoded
     @POST("getAktifitas.php")
     Call<Value> getaktifitas(@Field("getAktifitas") String getAktifitas);
+
+    @FormUrlEncoded
+    @POST("getCountAktifitas.php")
+    Call<Value> getCountaktifitas(@Field("Aktifitas") String Aktifitas);
 
     @FormUrlEncoded
     @POST("getTK.php")

@@ -20,4 +20,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void ReadMenu(View view){
+        Intent intent = new Intent(MainActivity.this,DetailSPK.class);
+        startActivity(intent);
+
+    }
+
 }

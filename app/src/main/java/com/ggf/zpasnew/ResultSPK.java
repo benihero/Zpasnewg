@@ -2,7 +2,7 @@ package com.ggf.zpasnew;
 
 public class ResultSPK {
 
-    String SPKName,mandor,TanggalSPK,TanggalReal,kawil,mandora,PJ;
+    String SPKName,shift,TanggalSPK,TanggalReal,kawil,mandora,PJ;
 
     public String getSPKName() {
         return SPKName;
@@ -12,12 +12,12 @@ public class ResultSPK {
         this.SPKName = SPKName;
     }
 
-    public String getMandor() {
-        return mandor;
+    public String getShift() {
+        return shift;
     }
 
-    public void setMandor(String mandor) {
-        this.mandor = mandor;
+    public void setShift(String shift) {
+        this.shift = shift;
     }
 
     public String getTanggalSPK() {

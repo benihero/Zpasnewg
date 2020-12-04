@@ -1,6 +1,6 @@
 package com.ggf.zpasnew;
 
-public class ResultAktifitas {
+public class  ResultAktifitas {
 
     String AktifitasName,SPKName,SatuanHasil,lokasi,Status,Lhasil,Thasil,JumlahTK;
 

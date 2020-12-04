@@ -11,9 +11,19 @@ public class Value {
     public List<ResultTK> getResultKIT() {
         return resultKIT;
     }
-
     List<ResultTK> resultTK;
     List<ResultTK> resultKIT;
+
+    List<ResultInputSPK> resultSPK;
+    List<ResultInputSPK> resultAktifitass;
+
+    public List<ResultInputSPK> getResultAktifitass() {
+        return resultAktifitass;
+    }
+
+    public List<ResultInputSPK> getResultSPK() {
+        return resultSPK;
+    }
 
     public List<ResultTK> getResultTK() {
         return resultTK;
