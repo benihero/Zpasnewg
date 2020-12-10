@@ -1,13 +1,19 @@
-package com.ggf.zpasnew;
+package com.ggf.zpasnew.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ggf.zpasnew.DetailSpkInput;
+import com.ggf.zpasnew.R;
+import com.ggf.zpasnew.Model.ResultInputSPK;
 
 import java.util.List;
 
@@ -35,6 +41,28 @@ public class AdapterDataSpkInput extends RecyclerView.Adapter<AdapterDataSpkInpu
         holder.grade.setText(resultSpk.get(position).getGreat());
         holder.hko.setText(resultSpk.get(position).getHKO());
         holder.hasil.setText(resultSpk.get(position).getHasil());
+        holder.linierid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ResultInputSPK resultInputSPK = resultSpk.get(position);
+                Intent i = new Intent(context, DetailSpkInput.class);
+                i.putExtra("spkid",resultInputSPK.getSPKName());
+                i.putExtra("namatk",resultInputSPK.getNamaTk());
+                i.putExtra("aktifitas",resultInputSPK.getAktifitas());
+                i.putExtra("tanggal",resultInputSPK.getTanggalRealisasi());
+                i.putExtra("hko",resultInputSPK.getHKO());
+                i.putExtra("hasil",resultInputSPK.getHasil());
+                i.putExtra("jamkerja",resultInputSPK.getJamKerja());
+                i.putExtra("grade",resultInputSPK.getGreat());
+                i.putExtra("keterangan",resultInputSPK.getKeterangan());
+                context.startActivity(i);
+
+
+
+
+            }
+        });
 
 
     }
@@ -47,6 +75,7 @@ public class AdapterDataSpkInput extends RecyclerView.Adapter<AdapterDataSpkInpu
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView aktifitass, nama, hko, hasil, grade;
+        LinearLayout linierid;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +85,7 @@ public class AdapterDataSpkInput extends RecyclerView.Adapter<AdapterDataSpkInpu
             hko = itemView.findViewById(R.id.HkoInputSPK);
             hasil = itemView.findViewById(R.id.HasilInputSPK);
             grade = itemView.findViewById(R.id.GradeInputSPK);
+            linierid = itemView.findViewById(R.id.LinierIDKerjaHasil);
 
         }
     }

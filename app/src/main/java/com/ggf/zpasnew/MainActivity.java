@@ -12,17 +12,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
     }
 
 
     public void inputMenu(View view){
-        Intent intent = new Intent(MainActivity.this,InputSPK.class);
+        Intent intent = new Intent(MainActivity.this,SpkWelcome.class);
         startActivity(intent);
+
 
     }
 
-    public void ReadMenu(View view){
-        Intent intent = new Intent(MainActivity.this,DetailSPK.class);
+    public void ReadTk(View view){
+        Intent intent = new Intent(MainActivity.this,halamantk.class);
         startActivity(intent);
 
     }

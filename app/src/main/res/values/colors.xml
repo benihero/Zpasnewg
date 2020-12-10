@@ -5,7 +5,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="green">#4CAF50</color>
+    <color name="green">#56D15B</color>
     <color name="greentwo">#7AEC7E</color>
     <color name="brown">#788879</color>
     <color name="blueBG">#DEF6FF</color>
@@ -14,5 +14,7 @@
     <color name="blueoldtwo">#0D8EF4</color>
     <color name="black">#FF000000</color>
     <color name="yellow">#DAC618</color>
+    <color name="yellow2">#EAD94A</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="whitetwo">#FAF8F8</color>
 </resources>

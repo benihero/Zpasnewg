@@ -1,11 +1,23 @@
-package com.ggf.zpasnew;
+package com.ggf.zpasnew.Model;
 
 public class ResultInputSPK {
 
-    String SPKName, Aktifitas,NamaTk,KIT,HKO,Hasil,Great,TanggalRealisasi;
+    String id, SPKName, Aktifitas, NamaTk, KIT, HKO, Hasil, JamKerja, Keterangan, Great, TanggalRealisasi;
+
+    public String getId() {
+        return id;
+    }
 
     public String getSPKName() {
         return SPKName;
+    }
+
+    public String getJamKerja() {
+        return JamKerja;
+    }
+
+    public String getKeterangan() {
+        return Keterangan;
     }
 
     public String getAktifitas() {

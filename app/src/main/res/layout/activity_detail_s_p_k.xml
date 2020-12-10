@@ -10,7 +10,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="200dp"
         android:background="@drawable/bg_main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,19 +18,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="90dp"
-          android:layout_marginRight="20dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.57"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/bg_round"
             android:elevation="5dp"
             android:orientation="vertical"
@@ -40,15 +42,25 @@
             app:layout_constraintTop_toTopOf="@+id/view"
             app:layout_constraintVertical_bias="0.821">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Realisasi"
-                android:textColor="@color/brown"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Realisasi"
+                    android:textColor="@color/brown"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,7 +69,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_height="105dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@color/green"
@@ -68,23 +80,49 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="sans-serif-condensed"
                         android:text="Luas Hasil"
-                        android:textStyle="bold" />
+                         />
 
                     <TextView
+                        android:id="@+id/LuasHasil"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="10"
+                        android:padding="8dp"
+                        android:text="0"
                         android:textSize="30dp"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/EditLuasHasil"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.3"
+                            android:layout_gravity="start"
+                            android:src="@drawable/ic_baseline_create_24"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-black"
+                            android:text="Ha"
+                            android:textAlignment="textEnd"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_height="105dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@color/blue"
@@ -95,24 +133,34 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="sans-serif-condensed"
                         android:text="Hasil Effektif"
+                         />
+
+                    <TextView
+
+                        android:id="@+id/HasilEfektif"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="0"
+                        android:textSize="30dp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/HasilEfektif"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="10"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="BTG"
+                        android:textAlignment="textEnd"
+                        android:textSize="12dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="100dp"
+                    android:layout_height="105dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:background="@color/yellow"
@@ -123,30 +171,55 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="sans-serif-condensed"
                         android:text="Jumlah TK"
+                         />
+
+                    <TextView
+                        android:id="@+id/InputJumlahTK"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="0"
+                        android:textSize="30dp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="12"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="Orang"
+                        android:textAlignment="textEnd"
+                        android:textSize="12dp" />
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
+            <EditText
+                android:id="@+id/InputDetailAktifitas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_buttonblue"
+                android:drawableEnd="@drawable/dropdownicon"
+                android:elevation="3dp"
+                android:focusable="false"
+                android:gravity="fill"
+                android:hint="Pilih Aktivitas"
+                android:padding="5dp"
+                android:textSize="15dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
             android:background="@drawable/bg_round"
             android:elevation="5dp"
             android:padding="5dp"
@@ -160,18 +233,29 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ReyHasilSpk"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:layout_editor_absoluteX="2dp"
                 tools:layout_editor_absoluteY="300dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
 
+
         </LinearLayout>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+           android:layout_marginRight="17dp"
+            android:text="Summary"
+            android:layout_marginLeft="17dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/bg_btnsave"
+            />
+
+
     </LinearLayout>
-
-
 
 
 

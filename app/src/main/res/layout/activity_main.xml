@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main"
+    android:background="@drawable/bgtry"
     android:orientation="vertical"
     android:padding="30dp"
     tools:context=".MainActivity">
@@ -51,16 +51,16 @@
             android:layout_height="200dp"
             android:background="@drawable/bg_round"
             android:elevation="4dp"
-            android:onClick="ReadMenu"
+            android:onClick="ReadTk"
             android:padding="9dp"
-            android:src="@drawable/readicon" />
+            android:src="@drawable/userpoto" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-condensed-light"
-            android:text="Read SPK"
+            android:text="Lihat TK"
             android:textColor="@color/brown"
             android:textSize="20dp"
             android:textStyle="bold" />

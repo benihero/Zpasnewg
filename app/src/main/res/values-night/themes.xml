@@ -14,4 +14,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:colorAccent">#f3f3f3</item>
+        <item name="android:textColor">#f3f3f3</item>
+        <item name="android:textColorPrimary">#f3f3f3</item>
+    </style>
 </resources>

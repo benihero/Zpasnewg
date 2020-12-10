@@ -290,7 +290,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:padding="9dp"
                     android:layout_marginBottom="8dp"
                     android:background="@color/blueBG"
@@ -299,6 +299,8 @@
                    <androidx.recyclerview.widget.RecyclerView
                        android:layout_width="match_parent"
                        android:id="@+id/reyaktifitas"
+                       android:orientation="horizontal"
+                       android:scrollbars="horizontal"
                        android:layout_height="wrap_content">
 
                    </androidx.recyclerview.widget.RecyclerView>
@@ -376,7 +378,6 @@
                         android:elevation="3dp"
                         android:drawableEnd="@drawable/dropdownicon"
                         android:background="@drawable/bg_buttonblue"
-
                         android:layout_height="match_parent"/>
 
                 </LinearLayout>
@@ -441,7 +442,7 @@
                         android:id="@+id/InputKIT"
                         android:layout_width="0dp"
                         android:textColor="@color/black"
-                        android:layout_weight="2.5"
+                        android:layout_weight="2.55"
                         android:padding="5dp"
                         android:textSize="15dp"
                         android:elevation="3dp"
@@ -460,7 +461,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:text="HKO"
-                        android:layout_weight="1.6"
+                        android:layout_weight="1.9"
                         android:gravity="fill"
                         android:textColor="@color/black"
                         android:layout_height="30dp"/>
@@ -474,13 +475,23 @@
                     <EditText
                         android:id="@+id/InputHKO"
                         android:layout_width="0dp"
-                        android:layout_weight="2.5"
+                        android:layout_weight="2"
                         android:elevation="3dp"
+                        android:hint="0.1-1"
+                        android:textColorHint="@color/brown"
                         android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="15dp"
                         android:padding="5dp"
                         android:background="@color/white"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Max 1"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:layout_height="match_parent"/>
 
                 </LinearLayout>
@@ -495,7 +506,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:text="Hasil"
-                        android:layout_weight="1.6"
+                        android:layout_weight="1.9"
                         android:gravity="fill"
                         android:textColor="@color/black"
                         android:layout_height="30dp"/>
@@ -509,7 +520,7 @@
                     <EditText
                         android:id="@+id/InputHasil"
                         android:layout_width="0dp"
-                        android:layout_weight="2.5"
+                        android:layout_weight="2"
                         android:elevation="3dp"
                         android:inputType="numberDecimal"
                         android:textColor="@color/black"
@@ -517,6 +528,93 @@
                         android:padding="5dp"
                         android:background="@color/white"
                         android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="BTG"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Jam Kerja"
+                        android:layout_weight="1.9"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:id="@+id/InputJamKerja"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:elevation="3dp"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:padding="5dp"
+                        android:background="@color/white"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Jam"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text="Keterangan"
+                        android:layout_weight="1.6"
+                        android:gravity="fill"
+                        android:textColor="@color/black"
+                        android:layout_height="30dp"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:text=":"
+                        android:gravity="fill"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/black"
+                        android:layout_height="match_parent"/>
+                    <EditText
+                        android:id="@+id/InputKeterangan"
+                        android:layout_width="0dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="2.55"
+                        android:padding="5dp"
+                        android:inputType="textMultiLine"
+                        android:textSize="15dp"
+                        android:lines="3"
+                        android:elevation="3dp"
+                        android:background="@color/white"
+                        android:layout_height="wrap_content"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -528,7 +626,7 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:text="Great"
+                        android:text="Grade"
                         android:layout_weight="1.6"
                         android:gravity="fill"
                         android:textColor="@color/black"
@@ -565,16 +663,39 @@
 
         </LinearLayout>
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:text="Save"
-                android:onClick="InputDataSPK"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/bg_btnsave"
-                android:layout_height="wrap_content"/>
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:text="Lihat SPK"
+                    android:layout_weight="1"
+                    android:onClick="ReadMenu"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/bg_btnlihatspk"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:text="Save"
+                    android:layout_weight="1"
+                    android:onClick="InputDataSPK"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/bg_btnsave"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+
 
 
         </LinearLayout>

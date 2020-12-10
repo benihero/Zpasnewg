@@ -1,4 +1,4 @@
-package com.ggf.zpasnew;
+package com.ggf.zpasnew.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,13 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ggf.zpasnew.R;
+import com.ggf.zpasnew.Model.ResultAktifitas;
+
 import java.util.List;
 
-public class AdapterActivity extends RecyclerView.Adapter<AdapterActivity.ViewHolder> {
-private Context context;
-private List<ResultAktifitas> resultAktifitas;
+public class AdapterSPK extends RecyclerView.Adapter<AdapterSPK.ViewHolder> {
+    private Context context;
+    private List<ResultAktifitas> resultAktifitas;
 
-    public AdapterActivity(Context context, List<ResultAktifitas> resultAktifitas) {
+    public AdapterSPK(Context context, List<ResultAktifitas> resultAktifitas) {
         this.context = context;
         this.resultAktifitas = resultAktifitas;
     }

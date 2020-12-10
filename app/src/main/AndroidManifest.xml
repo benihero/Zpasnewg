@@ -3,7 +3,7 @@
     package="com.ggf.zpasnew">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Zpasnew">
-        <activity android:name=".DetailSPK"></activity>
+        <activity android:name=".halamantk"></activity>
+        <activity android:name=".Summary" />
+        <activity android:name=".SpkWelcome" />
+        <activity android:name=".DetailSpkInput" />
+        <activity android:name=".DetailSPK" />
         <activity android:name=".MainActivity" />
         <activity android:name=".InputSPK" />
         <activity android:name=".SplashScreen">

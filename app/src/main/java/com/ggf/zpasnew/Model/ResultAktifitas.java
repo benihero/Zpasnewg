@@ -1,8 +1,13 @@
-package com.ggf.zpasnew;
+package com.ggf.zpasnew.Model;
 
 public class  ResultAktifitas {
 
-    String AktifitasName,SPKName,SatuanHasil,lokasi,Status,Lhasil,Thasil,JumlahTK;
+    String  AktifitasName,SPKName,SatuanHasil,lokasi,Status,Lhasil,Thasil,JumlahTK;
+    int id;
+
+    public int getId() {
+        return id;
+    }
 
     public String getAktifitasName() {
         return AktifitasName;

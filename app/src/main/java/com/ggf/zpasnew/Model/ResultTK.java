@@ -1,12 +1,8 @@
-package com.ggf.zpasnew;
+package com.ggf.zpasnew.Model;
 
 public class ResultTK {
 
-    String mandora,Nama,KIT;
-
-    public String getMandora() {
-        return mandora;
-    }
+    String Nama,KIT;
 
     public String getNama() {
         return Nama;

@@ -1,8 +1,8 @@
-package com.ggf.zpasnew;
+package com.ggf.zpasnew.Model;
 
 public class ResultSPK {
 
-    String SPKName,shift,TanggalSPK,TanggalReal,kawil,mandora,PJ;
+    String spkID, SPKName,shift,TanggalSPK,TanggalReal,kawil,namaMandor,PJ;
 
     public String getSPKName() {
         return SPKName;
@@ -14,6 +14,10 @@ public class ResultSPK {
 
     public String getShift() {
         return shift;
+    }
+
+    public String getSpkID() {
+        return spkID;
     }
 
     public void setShift(String shift) {
@@ -44,12 +48,8 @@ public class ResultSPK {
         this.kawil = kawil;
     }
 
-    public String getMandora() {
-        return mandora;
-    }
-
-    public void setMandora(String mandora) {
-        this.mandora = mandora;
+    public String getNamaMandor() {
+        return namaMandor;
     }
 
     public String getPJ() {
@@ -59,4 +59,5 @@ public class ResultSPK {
     public void setPJ(String PJ) {
         this.PJ = PJ;
     }
+
 }

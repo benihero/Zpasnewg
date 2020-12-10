@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_margin="3dp"
+        android:padding="5dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text="HKO"
+
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text=" : "
+
+                />
+            <EditText
+                android:id="@+id/edithko"
+                android:layout_weight="3"
+                android:paddingStart="4dp"
+                android:background="@drawable/bg_edittext"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="35dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text="Hasil"
+
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text=" : "
+
+                />
+            <EditText
+                android:id="@+id/edithasil"
+                android:layout_weight="3"
+                android:paddingStart="4dp"
+                android:background="@drawable/bg_edittext"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_height="35dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text="Jam"
+
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:text=" : "
+
+                />
+            <EditText
+                android:id="@+id/editJamKerja"
+                android:layout_weight="3"
+                android:paddingStart="4dp"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:background="@drawable/bg_edittext"
+                android:layout_height="35dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/yellow"
+                android:layout_margin="5dp"
+                android:layout_height="35dp"
+                android:text="Cancel"
+
+                />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:background="@color/blue"
+                android:layout_height="35dp"
+                android:text="Save"
+
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
