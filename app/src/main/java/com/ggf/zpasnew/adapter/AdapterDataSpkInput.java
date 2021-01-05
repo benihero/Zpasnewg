@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ggf.zpasnew.DetailSPK;
 import com.ggf.zpasnew.DetailSpkInput;
 import com.ggf.zpasnew.R;
 import com.ggf.zpasnew.Model.ResultInputSPK;
@@ -47,7 +48,7 @@ public class AdapterDataSpkInput extends RecyclerView.Adapter<AdapterDataSpkInpu
 
                 ResultInputSPK resultInputSPK = resultSpk.get(position);
                 Intent i = new Intent(context, DetailSpkInput.class);
-                i.putExtra("spkid",resultInputSPK.getSPKName());
+                i.putExtra("spkid",resultInputSPK.getId());
                 i.putExtra("namatk",resultInputSPK.getNamaTk());
                 i.putExtra("aktifitas",resultInputSPK.getAktifitas());
                 i.putExtra("tanggal",resultInputSPK.getTanggalRealisasi());
@@ -56,7 +57,10 @@ public class AdapterDataSpkInput extends RecyclerView.Adapter<AdapterDataSpkInpu
                 i.putExtra("jamkerja",resultInputSPK.getJamKerja());
                 i.putExtra("grade",resultInputSPK.getGreat());
                 i.putExtra("keterangan",resultInputSPK.getKeterangan());
+                i.putExtra("upah",resultInputSPK.getUpah());
                 context.startActivity(i);
+
+
 
 
 

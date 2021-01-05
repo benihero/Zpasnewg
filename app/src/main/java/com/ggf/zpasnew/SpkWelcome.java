@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class SpkWelcome extends AppCompatActivity {
     AdapterActivity adapterActivity;
     List<ResultSPK> resultSPKS = new ArrayList<>();
     String URL = "http://192.168.43.38/spk/";
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,12 @@ public class SpkWelcome extends AppCompatActivity {
 
     public void getDataSPK(){
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(true);
+        progressDialog.setMessage("Loading..");
+        progressDialog.show();
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -64,12 +72,10 @@ public class SpkWelcome extends AppCompatActivity {
             public void onResponse(Call<Value> call, Response<Value> response) {
                 String value = response.body().getValue();
                 if(value.equals("1")){
-
                     resultSPKS = response.body().getResult();
                     adapterActivity = new AdapterActivity(SpkWelcome.this, resultSPKS);
                     recyclerView.setAdapter(adapterActivity);
-
-
+                    progressDialog.dismiss();
                 }
 
             }

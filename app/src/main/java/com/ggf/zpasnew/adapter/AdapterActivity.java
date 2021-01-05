@@ -22,8 +22,6 @@ private Context context;
 private List<ResultSPK> resultspk;
 
 
-
-
     public AdapterActivity(Context context, List<ResultSPK> resultspk) {
         this.context = context;
         this.resultspk = resultspk;

@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -21,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ggf.zpasnew.Model.ResultAktifitas;
+import com.ggf.zpasnew.Model.ResultCountSPK;
 import com.ggf.zpasnew.Model.ResultDataRealAktifitas;
 import com.ggf.zpasnew.Model.ResultInputSPK;
 import com.ggf.zpasnew.Model.ResultJumlahTK;
@@ -38,9 +42,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DetailSPK extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    TextView hasile,luashasil,jmlhtk;
+    TextView hasile, luashasil, jmlhtk;
     EditText DetailAktifitas;
     ImageView editluashasil;
+
 
     ListPopupWindow listPopupWindow;
     List<ResultInputSPK> resultInputSPKS = new ArrayList<>();
@@ -48,22 +53,28 @@ public class DetailSPK extends AppCompatActivity {
     private List<ResultAktifitas> spkName = new ArrayList<>();
     private List<ResultAktifitas> resultsAllaktifitas = new ArrayList<>();
     private List<ResultJumlahTK> tk = new ArrayList<>();
+    private List<ResultCountSPK> resultCountSPKS = new ArrayList<>();
     private List<ResultDataRealAktifitas> realaktifitas = new ArrayList<>();
     AdapterDataSpkInput adapterDataSpkInput;
     String URL = "http://192.168.43.38/spk/";
 
     @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        adapterDataSpkInput.notifyDataSetChanged();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_s_p_k);
+
         recyclerView = findViewById(R.id.ReyHasilSpk);
         hasile = findViewById(R.id.HasilEfektif);
         luashasil = findViewById(R.id.LuasHasil);
         editluashasil = findViewById(R.id.EditLuasHasil);
         jmlhtk = findViewById(R.id.InputJumlahTK);
 
-
-        getDataSPK();
         adapterDataSpkInput = new AdapterDataSpkInput(this, resultInputSPKS);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -71,12 +82,10 @@ public class DetailSPK extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapterDataSpkInput);
 
-        editluashasil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popUpMenuEditLuasHasil();
-            }
-        });
+        getDataSPK();
+        getUpdateAktifitas();
+
+        editluashasil.setOnClickListener(v -> popUpMenuEditLuasHasil());
 
 
         DetailAktifitas.addTextChangedListener(new TextWatcher() {
@@ -91,8 +100,6 @@ public class DetailSPK extends AppCompatActivity {
                 getCountAktifitas(DetailAktifitas.getText().toString());
                 getLuasHasil(DetailAktifitas.getText().toString());
                 getJumlahTK(DetailAktifitas.getText().toString());
-                getIdAktifitas(DetailAktifitas.getText().toString());
-
 
             }
 
@@ -106,20 +113,27 @@ public class DetailSPK extends AppCompatActivity {
         DetailAktifitas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listPopupWindow.show();
+
+                if (listPopupWindow == null) {
+
+                    Toast.makeText(getApplicationContext(), "Data Belum masuk", Toast.LENGTH_SHORT).show();
+                } else {
+                    listPopupWindow.show();
+                }
+
             }
         });
 
     }
 
 
-    public void popUpMenuEditLuasHasil(){
+    public void popUpMenuEditLuasHasil() {
 
         final EditText taskEditText = new EditText(DetailSPK.this);
         taskEditText.setTextColor(getColor(R.color.black));
         taskEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
-        if(resultsAllaktifitas.isEmpty()){
-            Toast.makeText(DetailSPK.this,"Data Sedang kosong",Toast.LENGTH_SHORT).show();
+        if (resultsAllaktifitas.isEmpty()) {
+            Toast.makeText(DetailSPK.this, "Data Sedang kosong", Toast.LENGTH_SHORT).show();
         } else {
             taskEditText.setText(resultsAllaktifitas.get(0).getLhasil());
             AlertDialog dialog = new AlertDialog.Builder(DetailSPK.this, R.style.Theme_MaterialComponents_Light_Dialog_MinWidth)
@@ -130,6 +144,13 @@ public class DetailSPK extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
+                            Bundle bundle = getIntent().getExtras();
+                            String idspk = bundle.getString("spkid");
+
+                            updateLuasHasil(idspk,DetailAktifitas.getText().toString(),taskEditText.getText().toString());
+                            luashasil.setText(taskEditText.getText().toString());
+                            Intent intent = new Intent(DetailSPK.this,DetailSPK.class);
+                            startActivity(intent);
 
                         }
                     })
@@ -140,9 +161,11 @@ public class DetailSPK extends AppCompatActivity {
     }
 
 
-
     public void getDataSPK() {
-
+        ProgressDialog progressDialog;
+        progressDialog = ProgressDialog.show(this, "", "Loading..");
+        progressDialog.setCancelable(true);
+        progressDialog.setProgressStyle(R.style.MaterialAlertDialog_MaterialComponents_Title_Text_CenterStacked);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -156,11 +179,15 @@ public class DetailSPK extends AppCompatActivity {
                 String value = response.body().getValue();
 
                 if (value.equals("1")) {
+
+                    resultInputSPKS.clear();
                     resultInputSPKS = response.body().getResultSPK();
                     adapterDataSpkInput = new AdapterDataSpkInput(DetailSPK.this, resultInputSPKS);
                     recyclerView.setAdapter(adapterDataSpkInput);
+                    progressDialog.dismiss();
 
                 }
+
             }
 
             @Override
@@ -172,22 +199,19 @@ public class DetailSPK extends AppCompatActivity {
 
     }
 
-    public void updateAktifitas(String id,String hasil,String hse,String jmlhtk){
-
-
+    public void updateAktifitas(String spkID, String Aktifitas, String hse, String jmlhtk,String Luashasil,String totalupah) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiData apiData = retrofit.create(ApiData.class);
-        int idt = Integer.parseInt(id);
-        Call<Value> call = apiData.UpdateAktifitas(idt,hasil,hse,jmlhtk);
+        Call<Value> call = apiData.UpdateAktifitas(spkID, Aktifitas, hse, jmlhtk,Luashasil,totalupah);
         call.enqueue(new Callback<Value>() {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
 
-                       }
+            }
 
             @Override
             public void onFailure(Call<Value> call, Throwable t) {
@@ -198,7 +222,7 @@ public class DetailSPK extends AppCompatActivity {
 
     }
 
-    public void getIdAktifitas(String aktifitas){
+    public void getIdAktifitas(String aktifitas) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
@@ -211,17 +235,10 @@ public class DetailSPK extends AppCompatActivity {
             public void onResponse(Call<Value> call, Response<Value> response) {
                 String value = response.body().getValue();
 
-                if(value.equals("1")){
+                if (value.equals("1")) {
 
                     realaktifitas = response.body().getResultRealAktifitas();
                     String idd = realaktifitas.get(0).getId();
-
-                    updateAktifitas(idd,luashasil.getText().toString(),hasile.getText().toString(),jmlhtk.getText().toString());
-
-
-
-
-
 
                 }
             }
@@ -321,10 +338,9 @@ public class DetailSPK extends AppCompatActivity {
             }
         });
 
-
     }
 
-    public void FilterAktifitas(String aktifitas){
+    public void FilterAktifitas(String aktifitas) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
@@ -338,12 +354,11 @@ public class DetailSPK extends AppCompatActivity {
             public void onResponse(Call<Value> call, Response<Value> response) {
                 String value = response.body().getValue();
 
-                if(value.equals("1")){
+                if (value.equals("1")) {
 
                     resultInputSPKS = response.body().getResultSPK();
                     adapterDataSpkInput = new AdapterDataSpkInput(DetailSPK.this, resultInputSPKS);
                     recyclerView.setAdapter(adapterDataSpkInput);
-
 
                 }
             }
@@ -356,7 +371,7 @@ public class DetailSPK extends AppCompatActivity {
 
     }
 
-    public void getLuasHasil(String aktifitas){
+    public void getLuasHasil(String aktifitas) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
@@ -369,11 +384,10 @@ public class DetailSPK extends AppCompatActivity {
             public void onResponse(Call<Value> call, Response<Value> response) {
                 String value = response.body().getValue();
 
-                if(value.equals("1")){
+                if (value.equals("1")) {
 
                     resultsAllaktifitas = response.body().getResultAktifitas();
                     luashasil.setText(resultsAllaktifitas.get(0).getLhasil());
-
 
 
                 }
@@ -389,7 +403,7 @@ public class DetailSPK extends AppCompatActivity {
 
     }
 
-    public void getJumlahTK(String aktifitas){
+    public void getJumlahTK(String aktifitas) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
@@ -401,10 +415,9 @@ public class DetailSPK extends AppCompatActivity {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
                 String value = response.body().getValue();
-                if(value.equals("1")){
-                tk = response.body().getJmlhTK();
-                jmlhtk.setText(tk.get(0).getJumlah());
-
+                if (value.equals("1")) {
+                    tk = response.body().getJmlhTK();
+                    jmlhtk.setText(tk.get(0).getJumlah());
 
 
                 }
@@ -419,4 +432,84 @@ public class DetailSPK extends AppCompatActivity {
 
 
     }
+
+
+    public void moveSummary(View view) {
+
+        Intent intent = new Intent(DetailSPK.this, Summary.class);
+        Bundle bundle = getIntent().getExtras();
+        String idspk = bundle.getString("spkid");
+        intent.putExtra("spkid", idspk);
+        startActivity(intent);
+    }
+
+    public void getUpdateAktifitas(){
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiData apiData = retrofit.create(ApiData.class);
+        Call<Value> call = apiData.gethasil();
+
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+
+                String value = response.body().getValue();
+                if(value.equals("1")){
+
+                    resultCountSPKS = response.body().getResultsum();
+
+                    for (int i=0; i<resultCountSPKS.size(); i++){
+
+                        updateAktifitas(resultCountSPKS.get(i).getSpkID(),resultCountSPKS.get(i).getAktifitas(),resultCountSPKS.get(i).getHasilEffektif(),resultCountSPKS.get(i).getTotalTk(),resultCountSPKS.get(i).getLuasHasil(),resultCountSPKS.get(i).getUpah());
+
+                    }
+
+
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
+    public void updateLuasHasil(String spkID,String aktifitas,String luasHasil){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiData apiData = retrofit.create(ApiData.class);
+        Call<Value> call = apiData.updateLuasHasil(spkID,aktifitas,luasHasil);
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                String value = response.body().getValue();
+                if(value.equals("1")){
+
+                    Toast.makeText(getApplicationContext(),"Luas Hasil Berhasil di Update",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
 }

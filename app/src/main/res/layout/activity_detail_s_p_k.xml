@@ -1,39 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".DetailSPK">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/bg_main"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <LinearLayout
         android:layout_width="match_parent"
+        android:background="@color/blueBG"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.57"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/bg_round"
+            android:layout_weight="0.55"
             android:elevation="5dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,13 +46,12 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_round"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -72,7 +59,7 @@
                     android:layout_height="105dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@color/green"
+                    android:background="@drawable/bg_green"
                     android:elevation="1dp"
                     android:orientation="vertical"
                     android:padding="5dp">
@@ -81,8 +68,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="Luas Hasil"
-                         />
+                        android:text="Luas Hasil" />
 
                     <TextView
                         android:id="@+id/LuasHasil"
@@ -91,32 +77,31 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:text="0"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
+                        android:textSize="23dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
                         <ImageView
                             android:id="@+id/EditLuasHasil"
                             android:layout_width="0dp"
-                            android:layout_weight="0.3"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="start"
-                            android:src="@drawable/ic_baseline_create_24"
-                            android:layout_height="wrap_content"/>
+                            android:layout_weight="0.3"
+                            android:src="@drawable/ic_baseline_create_24" />
+
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="1"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:fontFamily="sans-serif-black"
                             android:text="Ha"
                             android:textAlignment="textEnd"
                             android:textSize="12dp" />
 
                     </LinearLayout>
-
-
 
                 </LinearLayout>
 
@@ -125,7 +110,7 @@
                     android:layout_height="105dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@color/blue"
+                    android:background="@drawable/bg_blue"
                     android:elevation="1dp"
                     android:orientation="vertical"
                     android:padding="5dp">
@@ -134,8 +119,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="Hasil Effektif"
-                         />
+                        android:text="Hasil Effektif" />
 
                     <TextView
 
@@ -145,12 +129,12 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:text="0"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
+                        android:textSize="23dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
                         android:fontFamily="sans-serif-black"
                         android:text="BTG"
                         android:textAlignment="textEnd"
@@ -163,7 +147,7 @@
                     android:layout_height="105dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@color/yellow"
+                    android:background="@drawable/bg_yellow"
                     android:elevation="1dp"
                     android:orientation="vertical"
                     android:padding="5dp">
@@ -172,8 +156,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="Jumlah TK"
-                         />
+                        android:text="Jumlah TK" />
 
                     <TextView
                         android:id="@+id/InputJumlahTK"
@@ -182,8 +165,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:text="0"
-                        android:textSize="30dp"
-                        android:textStyle="bold" />
+                        android:textSize="23dp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -195,13 +177,13 @@
 
                 </LinearLayout>
 
-
             </LinearLayout>
 
             <EditText
                 android:id="@+id/InputDetailAktifitas"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="fill_vertical"
                 android:layout_margin="5dp"
                 android:background="@drawable/bg_buttonblue"
                 android:drawableEnd="@drawable/dropdownicon"
@@ -219,9 +201,9 @@
             android:layout_height="0dp"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:background="@drawable/bg_round"
             android:elevation="5dp"
+            android:orientation="vertical"
             android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -233,32 +215,23 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ReyHasilSpk"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="2dp"
-                tools:layout_editor_absoluteY="300dp">
+                android:layout_height="match_parent">
 
             </androidx.recyclerview.widget.RecyclerView>
-
-
 
         </LinearLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="0dp"
-           android:layout_marginRight="17dp"
-            android:text="Summary"
             android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="0.15"
             android:background="@drawable/bg_btnsave"
-            />
-
+            android:onClick="moveSummary"
+            android:text="Summary" />
 
     </LinearLayout>
 
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

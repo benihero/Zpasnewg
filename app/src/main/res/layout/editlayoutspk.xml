@@ -39,6 +39,7 @@
             <EditText
                 android:id="@+id/edithko"
                 android:layout_weight="3"
+                android:inputType="numberDecimal"
                 android:paddingStart="4dp"
                 android:background="@drawable/bg_edittext"
                 android:textColor="@color/black"
@@ -74,6 +75,7 @@
             <EditText
                 android:id="@+id/edithasil"
                 android:layout_weight="3"
+                android:inputType="numberDecimal"
                 android:paddingStart="4dp"
                 android:background="@drawable/bg_edittext"
                 android:textColor="@color/black"
@@ -109,6 +111,7 @@
             <EditText
                 android:id="@+id/editJamKerja"
                 android:layout_weight="3"
+                android:inputType="number"
                 android:paddingStart="4dp"
                 android:textColor="@color/black"
                 android:layout_width="0dp"
@@ -125,6 +128,7 @@
 
 
             <Button
+                android:id="@+id/buttonCancel"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:background="@color/yellow"
@@ -135,6 +139,7 @@
                 />
 
             <Button
+                android:id="@+id/buttonSave"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"

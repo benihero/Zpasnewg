@@ -4,12 +4,9 @@ public class ResultDataRealAktifitas {
 
     String id,AktifitasName,Lhasil,RealLhasil,RealHasilEf,RealJmlhTK;
 
-
-
     public String getId() {
         return id;
     }
-
     public String getAktifitasName() {
         return AktifitasName;
     }

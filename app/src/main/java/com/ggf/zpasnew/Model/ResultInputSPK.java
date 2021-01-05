@@ -2,7 +2,15 @@ package com.ggf.zpasnew.Model;
 
 public class ResultInputSPK {
 
-    String id, SPKName, Aktifitas, NamaTk, KIT, HKO, Hasil, JamKerja, Keterangan, Great, TanggalRealisasi;
+    String id, SPKName, Aktifitas, NamaTk, KIT, HKO, Hasil, JamKerja,JenisUpah, Keterangan, Great, TanggalRealisasi,Upah;
+
+    public String getJenisUpah() {
+        return JenisUpah;
+    }
+
+    public String getUpah() {
+        return Upah;
+    }
 
     public String getId() {
         return id;

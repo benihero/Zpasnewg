@@ -1,198 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:padding="5dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
-    android:elevation="5dp"
+    android:id="@+id/listaktifitaslinier"
+    app:layout_constraintCircleRadius="5dp"
     android:background="@color/white"
-    android:layout_height="wrap_content">
-
+    android:elevation="5dp"
+    android:orientation="vertical"
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_height="wrap_content">
-
-
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/ListAktifitas"
             android:layout_width="0dp"
-            android:textSize="16dp"
+            android:layout_height="match_parent"
             android:layout_weight="2.5"
-            android:textColor="@color/black"
-            android:text="Tanam Sucker"
             android:gravity="center"
-            android:layout_height="match_parent"/>
-
+            android:text="Tanam Sucker"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
-            android:text="Satuan"
-            android:textStyle="bold"
+            android:layout_height="30dp"
             android:layout_weight="0.5"
             android:gravity="fill"
+            android:text="Satuan"
             android:textColor="@color/black"
-            android:layout_height="30dp"/>
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="0dp"
-            android:text=":"
-            android:gravity="fill"
+            android:layout_height="match_parent"
             android:layout_weight="0.1"
-            android:textColor="@color/black"
-            android:layout_height="match_parent"/>
+            android:gravity="fill"
+            android:text=":"
+            android:textColor="@color/black" />
+
         <TextView
             android:id="@+id/ListSatuan"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.8"
-            android:textColor="@color/black"
-            android:text="BTG"
             android:gravity="fill"
-            android:layout_height="match_parent"/>
+            android:text="BTG"
+            android:textColor="@color/black" />
+
         <TextView
             android:layout_width="0dp"
-            android:text="Lokasi"
-            android:textStyle="bold"
+            android:layout_height="30dp"
             android:layout_weight="0.5"
             android:gravity="fill"
+            android:text="Lokasi"
             android:textColor="@color/black"
-            android:layout_height="30dp"/>
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="0dp"
-            android:text=":"
-            android:gravity="fill"
+            android:layout_height="match_parent"
             android:layout_weight="0.1"
-            android:textColor="@color/black"
-            android:layout_height="match_parent"/>
+            android:gravity="fill"
+            android:text=":"
+            android:textColor="@color/black" />
+
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
             android:id="@+id/ListLokasi"
-            android:textColor="@color/black"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="fill"
             android:text="UPH123"
-            android:gravity="fill"
-            android:layout_height="match_parent"/>
+            android:textColor="@color/black" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.5"
+            android:gravity="fill"
             android:text="Status"
-            android:textStyle="bold"
-            android:layout_weight="0.54"
-            android:gravity="fill"
             android:textColor="@color/black"
-            android:layout_height="30dp"/>
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="0dp"
-            android:text=":"
-            android:gravity="fill"
+            android:layout_height="match_parent"
             android:layout_weight="0.1"
-            android:textColor="@color/black"
-            android:layout_height="match_parent"/>
+            android:gravity="fill"
+            android:text=":"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/ListStatus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="fill"
+            android:text="UPH102"
+            android:textColor="@color/black" />
+
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="2.6"
-            android:text="UPH102"
-            android:id="@+id/ListStatus"
-            android:textColor="@color/black"
+            android:layout_height="30dp"
+            android:layout_weight="0.8"
             android:gravity="fill"
-            android:layout_height="match_parent"/>
+            android:text="Jenis Upah"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:gravity="fill"
+            android:text=":"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/ListJenisUpah"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:gravity="fill"
+            android:text="0"
+            android:textColor="@color/black" />
 
     </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        android:layout_height="wrap_content">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
-            android:text="L Hasil"
+            android:layout_height="30dp"
             android:layout_weight="0.58"
-            android:gravity="fill"
-            android:textStyle="bold"
+            android:gravity="center"
+            android:text="L Hasil"
             android:textColor="@color/black"
-            android:layout_height="30dp"/>
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
         <TextView
-            android:layout_width="0dp"
-            android:text=":"
-            android:gravity="fill"
-            android:layout_weight="0.1"
-            android:textColor="@color/black"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="0dp"
             android:id="@+id/ListLhasil"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:background="@color/green"
-            android:text="10"
             android:gravity="center"
-            android:layout_height="match_parent"/>
+            android:text="10" />
+
         <TextView
             android:layout_width="0dp"
-            android:text="T Hasil"
+            android:layout_height="30dp"
             android:layout_marginLeft="1dp"
             android:layout_weight="0.54"
-            android:textStyle="bold"
-            android:gravity="fill"
+            android:gravity="center"
+            android:text="T Hasil"
             android:textColor="@color/black"
-            android:layout_height="30dp"/>
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
         <TextView
-            android:layout_width="0dp"
-            android:text=":"
-            android:gravity="fill"
-            android:layout_weight="0.1"
-            android:textColor="@color/black"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
             android:id="@+id/ListThasil"
-            android:text="1000"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_marginRight="1dp"
+            android:layout_weight="0.6"
             android:background="@color/blue"
             android:gravity="center"
-            android:layout_height="match_parent"/>
+            android:text="1000" />
+
         <TextView
             android:layout_width="0dp"
-            android:text="Jml TK"
-            android:textStyle="bold"
+            android:layout_height="30dp"
             android:layout_weight="0.54"
-            android:gravity="fill"
-            android:textColor="@color/black"
-            android:layout_height="30dp"/>
-        <TextView
-            android:layout_width="0dp"
-            android:text=":"
-            android:gravity="fill"
-            android:layout_weight="0.1"
-            android:textColor="@color/black"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:text="10"
-            android:id="@+id/ListJmlhTK"
             android:gravity="center"
+            android:text="Jml TK"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ListJmlhTK"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:background="@color/yellow"
-            android:layout_height="match_parent"/>
+            android:gravity="center"
+            android:text="10" />
 
     </LinearLayout>
 

@@ -1,54 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="4dp"
     android:clipToPadding="false"
-    android:background="@color/white"
     android:orientation="vertical"
-    >
+    android:padding="7dp">
 
     <LinearLayout
         android:id="@+id/Liniertk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-
-       android:elevation="4dp"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:background="@drawable/bg_round"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="NAMA"/>
+            android:orientation="horizontal"
+            android:padding="3dp">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="0.3"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="NAMA"
                 android:textColor="@color/black"
-                android:text=" : "/>
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text=" : "
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/TKnama"
+                android:fontFamily="@font/timeless"
                 android:layout_width="0dp"
-                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Agus Yuli"/>
-
-
-
-
+                android:layout_weight="2"
+                android:text="Agus Yuli"
+                android:textColor="@color/black" />
 
 
         </LinearLayout>
@@ -56,38 +51,35 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="0.8"
-                android:textStyle="bold"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="KIT"/>
+            android:orientation="horizontal"
+            android:padding="3dp">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="0.3"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="KIT"
                 android:textColor="@color/black"
-                android:text=" : "/>
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text=" : "
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/TKkit"
                 android:layout_width="0dp"
-                android:layout_weight="2"
+                android:fontFamily="@font/timeless"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="201111"/>
+                android:layout_weight="2"
+                android:text="201111"
+                android:textColor="@color/black" />
 
 
         </LinearLayout>
-
-
-
-
-
 
 
     </LinearLayout>

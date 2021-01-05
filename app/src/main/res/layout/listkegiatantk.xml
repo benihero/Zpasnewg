@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:clipToPadding="false"
+    android:layout_margin="3dp"
+    android:background="@drawable/bgkegiatantk"
+    android:orientation="horizontal"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="50dp"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:orientation="vertical"
+          android:layout_height="wrap_content">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="3dp"
+              android:orientation="horizontal">
+              <TextView
+                  android:layout_width="0dp"
+                  android:layout_weight="0.8"
+                  android:textStyle="bold"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/black"
+                  android:text="Tanggal"/>
+
+              <TextView
+                  android:layout_width="0dp"
+                  android:layout_weight="0.3"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/black"
+                  android:text=" : "/>
+
+              <TextView
+                  android:id="@+id/TKtanggal"
+                  android:layout_width="0dp"
+                  android:layout_weight="2"
+                  android:fontFamily="@font/timeless"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/black"
+                  android:text="2020-12-10"/>
+
+
+
+
+
+
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="3dp"
+              android:orientation="horizontal">
+              <TextView
+                  android:layout_width="0dp"
+                  android:layout_weight="0.8"
+                  android:textStyle="bold"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/black"
+                  android:text="Aktifitas"/>
+
+              <TextView
+                  android:layout_width="0dp"
+                  android:layout_weight="0.3"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/black"
+                  android:text=" : "/>
+
+              <TextView
+                  android:id="@+id/TKkegiatan"
+                  android:layout_width="0dp"
+                  android:layout_weight="2"
+                  android:fontFamily="@font/timeless"
+                  android:layout_height="wrap_content"
+                  android:textColor="@color/black"
+                  android:text="Tanam bibit sucker"/>
+
+
+          </LinearLayout>
+
+
+
+
+
+      </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+

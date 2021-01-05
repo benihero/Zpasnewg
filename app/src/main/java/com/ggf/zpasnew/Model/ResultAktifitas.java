@@ -1,11 +1,23 @@
 package com.ggf.zpasnew.Model;
 
-public class  ResultAktifitas {
+public class ResultAktifitas {
 
-    String  AktifitasName,SPKName,SatuanHasil,lokasi,Status,Lhasil,Thasil,JumlahTK;
-    int id;
+    String JenisUpah;
+    String AktifitasName;
+    String SPKName;
+    String SatuanHasil;
+    String lokasi;
+    String Status;
+    String Lhasil;
+    String Thasil;
+    String JumlahTK;
+    String id;
 
-    public int getId() {
+    public String getJenisUpah() {
+        return JenisUpah;
+    }
+
+    public String getId() {
         return id;
     }
 

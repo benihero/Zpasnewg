@@ -23,9 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ggf.zpasnew.Model.ResultAktifitas;
+import com.ggf.zpasnew.Model.ResultJumlahTK;
 import com.ggf.zpasnew.Model.ResultMandor;
 import com.ggf.zpasnew.Model.ResultSPK;
 import com.ggf.zpasnew.Model.ResultTK;
+import com.ggf.zpasnew.Model.ResultTargetHasil;
 import com.ggf.zpasnew.adapter.AdapterSPK;
 
 import java.util.ArrayList;
@@ -40,8 +42,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InputSPK extends AppCompatActivity {
 
-    EditText spk, mandor, kawil, pj, tanggalreal, Aktifitas, nama, KIT, Grade, hasil, hko,jam,keterangan;
-    TextView Tanggalspk,shift;
+    EditText spk, mandor, kawil, pj, tanggalreal, Aktifitas, nama, KIT, Grade, hasil, hko, jam, keterangan;
+    TextView Tanggalspk, shift;
+
     private ListPopupWindow statusPopupList;
     private ListPopupWindow statusPopupList1;
     private ListPopupWindow statusPopupList2;
@@ -54,14 +57,13 @@ public class InputSPK extends AppCompatActivity {
     String URL = "http://192.168.43.38/spk/";
     private List<ResultSPK> results = new ArrayList<>();
     private List<ResultTK> resultstk = new ArrayList<>();
+    private List<ResultJumlahTK> resultJumlahTKS = new ArrayList<>();
+    private List<ResultTargetHasil> resultTargetHasils = new ArrayList<>();
     private List<ResultTK> resultskit = new ArrayList<>();
     private List<ResultMandor> resultmandor = new ArrayList<>();
     private List<ResultAktifitas> resultsaktifitas = new ArrayList<>();
+    private List<ResultAktifitas> resultJenisUpah = new ArrayList<>();
     private List<ResultAktifitas> resultsAllaktifitas = new ArrayList<>();
-
-    String USERNAME_KEY = "usernamekey";
-    String username_key = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,14 +86,11 @@ public class InputSPK extends AppCompatActivity {
         jam = findViewById(R.id.InputJamKerja);
         keterangan = findViewById(R.id.InputKeterangan);
         recyclerView = findViewById(R.id.reyaktifitas);
-
-
         //getkey
 
-
         Bundle bundle = getIntent().getExtras();
-        String idspk =bundle.getString("spkid");
-        String namamandor =bundle.getString("mandor");
+        String idspk = bundle.getString("spkid");
+        String namamandor = bundle.getString("mandor");
         Tanggalspk.setText(bundle.getString("tanggal"));
         mandor.setText(bundle.getString("mandor"));
         pj.setText(bundle.getString("pj"));
@@ -103,10 +102,6 @@ public class InputSPK extends AppCompatActivity {
         getDataAktifitas(idspk);
         getMandor(namamandor);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(username_key, idspk);
-        editor.apply();
 
         viewAdapter = new AdapterSPK(this, resultsAllaktifitas);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -133,15 +128,13 @@ public class InputSPK extends AppCompatActivity {
                     }
                 }, year, moth, day);
                 picker.show();
-
             }
         });
         LoadSPK();
         getListDataGrade();
         setListeners();
 
-
-        mandor.addTextChangedListener(new TextWatcher() {
+        Aktifitas.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -149,7 +142,11 @@ public class InputSPK extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                String aktifitas = Aktifitas.getText().toString();
+                getTargetHasil(Aktifitas.getText().toString());
+                getJenisUpah(aktifitas);
+                getTKtemp(aktifitas);
+                getJumlahTKtemp(Aktifitas.getText().toString());
 
             }
 
@@ -158,6 +155,7 @@ public class InputSPK extends AppCompatActivity {
 
             }
         });
+
 
         nama.addTextChangedListener(new TextWatcher() {
             @Override
@@ -176,6 +174,10 @@ public class InputSPK extends AppCompatActivity {
 
             }
         });
+    }
+
+    public EditText getMandor() {
+        return mandor;
     }
 
     public void getListDataGrade() {
@@ -202,6 +204,11 @@ public class InputSPK extends AppCompatActivity {
     }
 
     public void loadRecycleData(String data) {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(true);
+        progressDialog.setMessage("Loading..");
+        progressDialog.show();
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
@@ -218,6 +225,7 @@ public class InputSPK extends AppCompatActivity {
                     resultsAllaktifitas = response.body().getResultAllAktifitas();
                     viewAdapter = new AdapterSPK(InputSPK.this, resultsAllaktifitas);
                     recyclerView.setAdapter(viewAdapter);
+                    progressDialog.dismiss();
 
                 }
             }
@@ -227,11 +235,9 @@ public class InputSPK extends AppCompatActivity {
 
             }
         });
-
-
     }
 
-    public void getMandor(String name){
+    public void getMandor(String name) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -244,13 +250,10 @@ public class InputSPK extends AppCompatActivity {
 
                 String value = response.body().getValue();
 
-                if(value.equals("1")){
+                if (value.equals("1")) {
 
                     resultmandor = response.body().getResultmandorID();
                     String mandorid = resultmandor.get(0).getIdMandor();
-
-                    getTK(mandorid);
-
 
                 }
             }
@@ -260,9 +263,6 @@ public class InputSPK extends AppCompatActivity {
 
             }
         });
-
-
-
 
     }
 
@@ -287,6 +287,35 @@ public class InputSPK extends AppCompatActivity {
                     shift.setText(results.get(0).getShift());
                     Tanggalspk.setText(results.get(0).getTanggalSPK());
                 }
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
+    public void getTargetHasil(String aktifitas) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiData api = retrofit.create(ApiData.class);
+        Call<Value> call = api.getTargetHasil(aktifitas);
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                String value = response.body().getValue();
+                if (value.equals("1")) {
+                    resultTargetHasils = response.body().getResultTargetHasil();
+
+
+                }
+
             }
 
             @Override
@@ -341,18 +370,16 @@ public class InputSPK extends AppCompatActivity {
 
             }
         });
-
-
     }
 
-    public void getTK(String id) {
+    public void getTKtemp(String aktifitas) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiData api = retrofit.create(ApiData.class);
-        Call<Value> call = api.getTK(id);
+        Call<Value> call = api.getTK(aktifitas);
         call.enqueue(new Callback<Value>() {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
@@ -362,11 +389,8 @@ public class InputSPK extends AppCompatActivity {
 
                 if (value.equals("1")) {
                     resultstk = response.body().getResultTK();
-
                     final List<String> status = new ArrayList<>();
-
                     for (int i = 0; i < resultstk.size(); i++) {
-
                         status.add(resultstk.get(i).getNama());
                     }
 
@@ -389,7 +413,6 @@ public class InputSPK extends AppCompatActivity {
 
             }
         });
-
     }
 
     public void getKIT(String nama) {
@@ -406,7 +429,6 @@ public class InputSPK extends AppCompatActivity {
 
                 String value = response.body().getValue();
 
-
                 if (value.equals("1")) {
                     resultskit = response.body().getResultKIT();
 
@@ -419,8 +441,6 @@ public class InputSPK extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     public void LoadSPK() {
@@ -442,13 +462,6 @@ public class InputSPK extends AppCompatActivity {
                     results = response.body().getResult();
 
                     final List<String> status = new ArrayList<>();
-
-
-//
-//                    for (int i = 0; i < results.size(); i++) {
-//
-//                        status.add(results.get(i).getSPKName());
-//                    }
 
                     statusPopupList = new ListPopupWindow(InputSPK.this);
                     ArrayAdapter adapter = new ArrayAdapter<>(InputSPK.this, R.layout.list_spk, R.id.tv_element, status);
@@ -486,8 +499,6 @@ public class InputSPK extends AppCompatActivity {
                 } else {
                     statusPopupList2.show();
                 }
-
-
             }
         });
 
@@ -515,7 +526,7 @@ public class InputSPK extends AppCompatActivity {
     public void InputDataSPK(View view) {
 
         Bundle bundle = getIntent().getExtras();
-        String idspk =bundle.getString("spkid");
+        String idspk = bundle.getString("spkid");
 
         String aktifitasI = Aktifitas.getText().toString();
         String NamaTK = nama.getText().toString();
@@ -528,15 +539,16 @@ public class InputSPK extends AppCompatActivity {
         String Jam = jam.getText().toString();
         String Keterangan = keterangan.getText().toString();
 
-        if(Tanggal.equals("")){
 
-            Toast.makeText(getApplicationContext(),"Tanggal Tidak boleh kosong",Toast.LENGTH_SHORT).show();
-        }else if(Hasil.equals("")){
+        if (Tanggal.equals("")) {
 
-            Toast.makeText(getApplicationContext(),"Hasil Tidak boleh kosong",Toast.LENGTH_SHORT).show();
-        }else if(HKO.equals("")){
+            Toast.makeText(getApplicationContext(), "Tanggal Tidak boleh kosong", Toast.LENGTH_SHORT).show();
+        } else if (Hasil.equals("")) {
 
-            Toast.makeText(getApplicationContext(),"HKO Tidak boleh kosong",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Hasil Tidak boleh kosong", Toast.LENGTH_SHORT).show();
+        } else if (HKO.equals("")) {
+
+            Toast.makeText(getApplicationContext(), "HKO Tidak boleh kosong", Toast.LENGTH_SHORT).show();
         } else {
 
             //membuat progres dialog
@@ -545,12 +557,32 @@ public class InputSPK extends AppCompatActivity {
             progressDialog.setMessage("Loading..");
             progressDialog.show();
 
+            getJenisUpah(Aktifitas.getText().toString());
+            String jenisuph = resultJenisUpah.get(0).getJenisUpah();
+
+            int TotalUpah;
+            if (jenisuph.equals("2")) {
+                TotalUpah = 97975;
+            } else if (jenisuph.equals("1")) {
+                int hasil = Integer.parseInt(Hasil);
+                TotalUpah = (hasil * 94);
+            } else {
+                int hasil = Integer.parseInt(Hasil);
+                TotalUpah = (hasil * 600);
+                if (TotalUpah < 97975) {
+                    TotalUpah = 97975;
+
+                } else {
+                    TotalUpah = (hasil * 600);
+
+                }
+            }
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             ApiData api = retrofit.create(ApiData.class);
-            Call<Value> call = api.Simpan(Spk, aktifitasI, NamaTK, kit, HKO, Hasil,Jam,Keterangan,Great, Tanggal);
+            Call<Value> call = api.Simpan(Spk, aktifitasI, NamaTK, kit, HKO, Hasil, Jam, jenisuph, Keterangan, Great, Tanggal, TotalUpah);
             call.enqueue(new Callback<Value>() {
                 @Override
                 public void onResponse(Call<Value> call, Response<Value> response) {
@@ -582,22 +614,76 @@ public class InputSPK extends AppCompatActivity {
             });
 
         }
+    }
 
+    public void getJenisUpah(String aktifitas) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiData api = retrofit.create(ApiData.class);
+        Call<Value> call = api.getJenisUpah(aktifitas);
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                String value = response.body().getValue();
+                if (value.equals("1")) {
+                    resultJenisUpah = response.body().getResultJenisUpah();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
 
+            }
+        });
 
 
     }
 
-    public void ReadMenu(View view){
-        Intent intent = new Intent(InputSPK.this,DetailSPK.class);
+    public void ReadMenu(View view) {
+        Intent intent = new Intent(InputSPK.this, DetailSPK.class);
+        Bundle bundle = getIntent().getExtras();
+        String idspk = bundle.getString("spkid");
+        intent.putExtra("spkid", idspk);
         startActivity(intent);
 
     }
+
+    public void getJumlahTKtemp(String aktifitas) {
+
+        final Retrofit[] retrofit = {new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()};
+        ApiData api = retrofit[0].create(ApiData.class);
+        Call<Value> call = api.getJumlahtktemp(aktifitas);
+        call.enqueue(new Callback<Value>() {
+
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                resultJumlahTKS = response.body().getResultJumlahTKtemp();
+                int targethasil = Integer.parseInt(resultTargetHasils.get(0).getJumlah());
+                int jumlahtk = Integer.parseInt(resultJumlahTKS.get(0).getJumlah());
+                if (jumlahtk == 0) {
+                    Toast.makeText(getApplicationContext(), "TK Belum Dipilih", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    int hasil1 = targethasil / jumlahtk;
+                    String hasil2 = String.valueOf(hasil1);
+                    hasil.setText(hasil2);
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+
+            }
+
+        });
+
+    }
+
 }
-
-
-
-
-
-

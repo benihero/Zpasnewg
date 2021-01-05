@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import com.ggf.zpasnew.Model.ResultTK;
@@ -25,13 +26,11 @@ public class halamantk extends AppCompatActivity {
     AdapterTK adapterTK;
     ArrayList<ResultTK> resultTKS = new ArrayList<>();
     String URL = "http://192.168.43.38/spk/";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_halamantk);
         recyclerView = findViewById(R.id.reyTK);
-
 
         adapterTK = new AdapterTK(this, resultTKS);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -43,6 +42,9 @@ public class halamantk extends AppCompatActivity {
 
     public void getDataSPk(){
 
+        ProgressDialog progressDialog ;
+        progressDialog = ProgressDialog.show(this, "Waiting...", "Loading..");
+        progressDialog.setCancelable(true);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -59,7 +61,7 @@ public class halamantk extends AppCompatActivity {
                     resultTKS = (ArrayList<ResultTK>) response.body().getResultTKData();
                     adapterTK = new AdapterTK(halamantk.this, resultTKS);
                     recyclerView.setAdapter(adapterTK);
-
+                    progressDialog.dismiss();
 
                 }
             }
